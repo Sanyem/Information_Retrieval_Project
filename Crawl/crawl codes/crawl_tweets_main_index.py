@@ -2,10 +2,10 @@ import tweepy
 import csv
 import pandas as pd
 import json
-consumer_key = 'uU8wcv2l2MrfB248u7vWxQyzr'
-consumer_secret = '2DNgOIgx9wzae76BUX26yYuP5TNHGs1v2KvKofzNWpzsrXkut2'
-access_token = '825220709618061312-Uy2877g1iUPbF6vaC56xnFg5WWnfMos'
-access_token_secret = 'S21VPpnfDXl8O17mSsyVoMjZLoxoPAbvuCjBLRw6s77wW'
+consumer_key = 'fJlYi6iYBTULX2CxiWwmSvr8S'
+consumer_secret = 'QDdqY2V6TgN4khKRi3xImCzWqulCHWGJVM9t9OTE9uBaL4d8ut'
+access_token = '825220709618061312-aqdeyEQjS4Jed0PcAKwm5elqMx6Kp5o'
+access_token_secret = 'CDa6puk2M4JZZQTi5MKYAq6Enu0zMakQMZX0mx5Trh96p'
 t = open("trends_file.txt","a")
 try:
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -16,7 +16,7 @@ try:
     trends = data['trends']
     names = [trend['name'] for trend in trends]
     trendsName = ' '.join(names)
-    file_num = 1680
+    file_num = 2200
     #print(names)
     for trend in names:
         if trend[0] == '#':
@@ -27,9 +27,9 @@ try:
             data={}
             for tweet in tweepy.Cursor(api.search,q=trend,
                             lang="en",
-                            since="2018-10-24",tweet_mode="extended",truncated="true").items():
+                            since="2018-12-09",tweet_mode="extended",truncated="true").items():
                 file_name = str(file_num) + '.txt'
-                f = open(file_name,"w")
+                f = open("new_tweets/"+file_name,"w")
                 if tweet.in_reply_to_status_id is None:
                     if 'retweeted_status' in dir(tweet):
                         if tweet.retweeted is False:
